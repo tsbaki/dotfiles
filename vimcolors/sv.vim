@@ -22,7 +22,7 @@ highlight Error ctermbg=9 guibg=#ff0000
 highlight Todo ctermfg=4 ctermbg=3 guifg=#000080 guibg=#c0c000
 highlight Directory ctermfg=2 guifg=#00c000
 highlight StatusLine ctermfg=11 ctermbg=12 cterm=none guifg=#ffff00 guibg=#0000ff gui=none
-highlight Normal guifg=#cccc66 guibg=#000000 ctermfg=darkyellow
+highlight Normal guifg=#cccc66 guibg=#000000 ctermfg=white
 highlight Search ctermbg=3 guibg=#c0c000
 hi operator guifg=pink
 hi statement guifg=red ctermfg=red
