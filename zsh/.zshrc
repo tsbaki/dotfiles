@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/aang/.oh-my-zsh"
 
@@ -46,6 +47,11 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
+
+# Stuff to be INGORED for the find command
+set wildmenu
+# hide the buffer
+set hidden
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -97,3 +103,18 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias android="/usr/share/android-studio/bin/studio.sh"
+alias zotero="/bin/zotero/zotero"
+alias netbeans="~/netbeans-8.2/bin/netbeans"
+alias v="vim"
+alias c="clear"
+
+xmodmap ~/.Xmodmap
+nvm use v10
+# :/netbeans-8.2/bin/"
+export PATH="$PATH:/snap/bin/"
+
+# Created by `userpath` on 2020-04-15 16:38:34
+export PATH="$PATH:/home/aang/.local/bin"
+
+export PATH="$PATH:/usr/lib/android-sdk/platform-tools:/home/aang/bin"
