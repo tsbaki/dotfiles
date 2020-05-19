@@ -1,5 +1,7 @@
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
+set termguicolors
+
 
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
@@ -20,11 +22,12 @@ let g:lightline = {
 
 
 syntax enable 
-colorscheme aang 
-set nofoldenable
+colorscheme monotone 
 set foldmethod=marker
 set nostartofline
 
+highlight LineNr ctermfg=white ctermbg=234
+"
 " for vimwiki 
 filetype plugin on
 set nocompatible
