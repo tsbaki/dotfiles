@@ -1,65 +1,51 @@
-" Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
-set termguicolors
+set encoding=utf-8
 
+set background=dark
+colorscheme solarized
+set clipboard=
 
-" Declare the list of plugins.
-Plug 'tpope/vim-sensible'
-Plug 'itchyny/lightline.vim'
-Plug 'vimwiki/vimwiki'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim' 
-Plug 'rustushki/JavaImp.vim'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'mattn/calendar-vim'
-" List ends here. Plugins become visible to Vim after this call.
-call plug#end()
-" status bar config
-let g:lightline = {
-    \ 'colorscheme' :'wombat',
-    \ }
+" Behaviour
+set noswapfile
+set ruler
 
-
-syntax enable 
-colorscheme monotone 
-set foldmethod=marker
-set nostartofline
-
-highlight LineNr ctermfg=white ctermbg=234
-"
-" for vimwiki 
-filetype plugin on
-set nocompatible
-" Run multiple wikis "
-let g:vimwiki_list = [
-                        \{'path': '~/Sync/VimWiki/personal.wiki'},
-                        \{'path': '~/Documents/VimWiki/tech.wiki'}
-                \]
-
-"
-" set the tabs to 4 spaces
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+" Display
+set nowrap
+set number
 set relativenumber
+set sw=4 et
+set softtabstop=-1
+set ts=8
+set nosmartindent
+set cin noai
+set tw=60 cc=60
+set nojoinspaces
+set formatoptions=cloqr
 
-set colorcolumn=80
+" Sane searching
+set hlsearch
+set incsearch
+set smartcase ignorecase
+nmap <silent> <Leader>l :nohlsearch<CR>
 
-" Pathogen
-execute pathogen#infect()
+" Terminal window title
+set title
+set titlestring=%t
+set titleold=
 
-autocmd FileType java setlocal omnifunc=javacomplete#Complete      
-nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+" Save history
+set history=10000
+set viminfo+=:10000
 
-imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-nmap <F5> <Plug>(JavaComplete-Imports-Add)
+""" Syntax hilighting
+syntax on
+filetype on
+filetype indent on
+filetype plugin on
 
-imap <F5> <Plug>(JavaComplete-Imports-Add)
-nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+set concealcursor=n
 
-imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+" Cursor behaviour
+let &t_SI = "\<esc>[5 q"  " blinking I-beam in insert mode
+let &t_SR = "\<esc>[3 q"  " blinking underline in replace mode
+let &t_EI = "\<esc>[1 q"  " default cursor (usually blinking block) otherwise
 
-imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
-
-"auto indent the whole file
-nmap <F10> gg=G 
