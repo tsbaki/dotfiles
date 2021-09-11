@@ -1,10 +1,8 @@
-## Andre's dotfiles
+## Dotfiles
 
-Give yourself permission to execute the shell script:
-
-    chmod +xw ./install.sh
+    
 
 Installs in your `$HOME` dir:
 
-    ./install.sh 
+    chmod +xw ./install.sh && ./install.sh 
 
