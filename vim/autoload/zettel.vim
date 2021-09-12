@@ -8,23 +8,40 @@ function! zettel#make_zettel() abort
     let l:tag = input('Tag: ')
     let $zet_path = l:index_card_dir . '/zet.txt'
     call writefile([l:tag], $zet_path, 'a')
+    " Create new window
     new
     edit $zet_path
 endfunction
 
-function! zettel#list_zettels() abort
+function! zettel#show_zettels_with_tag() abort
     if empty(glob(g:path_to_zettel))
-        echom 'There are not index cards to show...'
+        echom 'There are no index cards to show...'
         return
     endif
-    let l:tag = input('List zettels with tag: ')
-
+    let l:tag = input('Show zettels with tag: ')
+    " Redraw the screen - clears the input 
+    redraw
     for l:file in globpath(g:path_to_zettel, '*/zet.txt', 1, 1)
-        for l:line in readfile(l:file, '', 1)
-            if(l:tag ==? l:line)
-                " TODO 
-                echom l:file
+        for l:first_line in readfile(l:file, '', 1)
+            " ignore string case in comparison
+            if(l:tag ==? l:first_line)
+                echo "\n".Format_to_date(l:file)
+                for l:line in readfile(l:file, '', 1000)
+                    echo l:line
+                endfor
             endif
         endfor
     endfor
+endfunction
+
+function! Format_to_date(file_p) abort
+    " TODO: This is very ugly
+    let l:parent_dir = fnamemodify(fnamemodify(a:file_p, ":h"), ":t")
+    let l:length = 12
+    return strcharpart(l:parent_dir, 0, 2)."/".strcharpart(l:parent_dir, 2, 2)."/".strcharpart(l:parent_dir, 4, 2)." ".strcharpart(l:parent_dir, 6, 2).":".strcharpart(l:parent_dir, 8, 2).":".strcharpart(l:parent_dir, 10, 2)
+endfunction
+
+function! zettel#list_zettels() abort
+    let $path = g:path_to_zettel
+    explore $path
 endfunction
