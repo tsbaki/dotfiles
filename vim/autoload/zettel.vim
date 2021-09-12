@@ -38,7 +38,12 @@ function! s:Format_to_date(file_p) abort
     " TODO: This is very ugly
     let l:parent_dir = fnamemodify(fnamemodify(a:file_p, ":h"), ":t")
     let l:length = 12
-    return strcharpart(l:parent_dir, 0, 2)."/".strcharpart(l:parent_dir, 2, 2)."/".strcharpart(l:parent_dir, 4, 2)." ".strcharpart(l:parent_dir, 6, 2).":".strcharpart(l:parent_dir, 8, 2).":".strcharpart(l:parent_dir, 10, 2)
+    return strcharpart(l:parent_dir, 0, 2).
+                \"/".strcharpart(l:parent_dir, 2, 2).
+                \"/".strcharpart(l:parent_dir, 4, 2).
+                \" ".strcharpart(l:parent_dir, 6, 2).
+                \":".strcharpart(l:parent_dir, 8, 2).
+                \":".strcharpart(l:parent_dir, 10, 2)
 endfunction
 
 function! zettel#list_zettels() abort

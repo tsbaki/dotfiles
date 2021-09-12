@@ -2,6 +2,9 @@ set encoding=utf-8
 set background=dark
 set clipboard=
 
+" For the zettelkasten
+let g:path_to_zettel= $HOME."/Documents/Zettel"
+
 colorscheme solarized
 syntax enable
 
@@ -58,3 +61,19 @@ nnoremap ;; :w<CR>
 set laststatus=2
 set statusline=%f 
 
+" Commands for the zettel plugin
+command ZetShow call zettel#show_zettels_with_tag()
+command ZetList call zettel#list_zettels()
+command ZetNew  call zettel#make_zettel()
+
+" Taken from https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' |
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
