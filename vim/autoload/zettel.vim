@@ -43,5 +43,5 @@ endfunction
 
 function! zettel#list_zettels() abort
     let $path = g:path_to_zettel
-    explore $path
+    Vexplore $path
 endfunction
