@@ -25,7 +25,7 @@ function! zettel#show_zettels_with_tag() abort
         for l:first_line in readfile(l:file, '', 1)
             " ignore string case in comparison
             if(l:tag ==? l:first_line)
-                echo "\n".Format_to_date(l:file)
+                echo "\n".s:Format_to_date(l:file)
                 for l:line in readfile(l:file, '', 1000)
                     echo l:line
                 endfor
@@ -34,7 +34,7 @@ function! zettel#show_zettels_with_tag() abort
     endfor
 endfunction
 
-function! Format_to_date(file_p) abort
+function! s:Format_to_date(file_p) abort
     " TODO: This is very ugly
     let l:parent_dir = fnamemodify(fnamemodify(a:file_p, ":h"), ":t")
     let l:length = 12
