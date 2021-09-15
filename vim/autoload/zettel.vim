@@ -35,7 +35,6 @@ function! zettel#show_zettels_with_tag() abort
 endfunction
 
 function! s:Format_to_date(file_p) abort
-    " TODO: This is very ugly
     let l:parent_dir = fnamemodify(fnamemodify(a:file_p, ":h"), ":t")
     let l:length = 12
     return strcharpart(l:parent_dir, 0, 2).
@@ -49,4 +48,26 @@ endfunction
 function! zettel#list_zettels() abort
     let $path = g:path_to_zettel
     Vexplore $path
+endfunction
+
+function! zettel#link() abort
+    let l:paths = []
+    let l:counter = 0
+    " Search for zets with the same tag
+    for l:file in globpath(g:path_to_zettel, '*/zet.txt', 1, 1)
+        for l:first_line in readfile(l:file, '', 1)
+            " gets the line of the current buffer
+            " user must be inside a zet for this to work
+            if(getline(1)==?l:first_line)
+                call add(l:paths, l:file)
+            endif
+        endfor
+    endfor
+    vnew
+    for l:path in l:paths
+        let l:file = readfile(l:path, '',1000)
+        call append(l:counter, l:path )
+        call append(l:counter+1, l:file)
+        let l:counter = l:counter + len(l:file) + 1
+    endfor
 endfunction
