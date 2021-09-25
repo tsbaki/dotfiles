@@ -5,26 +5,23 @@ function! zettel#make_zettel() abort
     endif
     let l:index_card_dir = g:path_to_zettel . strftime('/%d%m%y%H%M%S')
     call mkdir(l:index_card_dir, 'p')
-    let l:tag = input('Tag: ')
     let $zet_path = l:index_card_dir . '/zet.txt'
-    call writefile([l:tag], $zet_path, 'a')
     " Create new window
     new
     edit $zet_path
 endfunction
 
-function! zettel#show_zettels_with_tag() abort
+function! zettel#show_zettels_with_tag(tag) abort
     if empty(glob(g:path_to_zettel))
         echom 'There are no index cards to show...'
         return
     endif
-    let l:tag = input('Show zettels with tag: ')
     " Redraw the screen - clears the input 
     redraw
     for l:file in globpath(g:path_to_zettel, '*/zet.txt', 1, 1)
         for l:first_line in readfile(l:file, '', 1)
             " ignore string case in comparison
-            if(l:tag ==? l:first_line)
+            if(a:tag ==? l:first_line)
                 echo "\n".s:Format_to_date(l:file)
                 for l:line in readfile(l:file, '', 1000)
                     echo l:line

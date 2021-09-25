@@ -15,10 +15,10 @@ set ruler
 " Display
 set nowrap
 
-set number
+set nonumber
 set relativenumber
 
-set sw=4 et
+set sw=2 et
 set softtabstop=-1
 set ts=8
 set nosmartindent
@@ -51,7 +51,7 @@ set concealcursor=n
 nmap <Leader>l :nohlsearch<CR>
 nmap <Leader>q :q<CR>
 
-nmap <F5> :!make debug<CR>
+nmap <F5> :!make<CR>
 
 runtime ftplugin/man.vim
 
@@ -62,18 +62,7 @@ set laststatus=2
 set statusline=%f 
 
 " Commands for the zettel plugin
-command ZetShow call zettel#show_zettels_with_tag()
+command -nargs=1 ZetShow call zettel#show_zettels_with_tag(<f-args>)
 command ZetList call zettel#list_zettels()
 command ZetNew  call zettel#make_zettel()
-
-" Taken from https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
-if has("autocmd")
-  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-  au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' |
-    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-    \ elseif v:insertmode == 'r' |
-    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-    \ endif
-  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif
+command ZetLink call zettel#link()
