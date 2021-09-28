@@ -31,6 +31,8 @@ set hlsearch
 set incsearch
 set smartcase ignorecase
 
+" Ignore the since last change error
+set hidden
 
 filetype on
 filetype indent on
@@ -62,7 +64,7 @@ set laststatus=2
 set statusline=%f 
 
 " Commands for the zettel plugin
-command -nargs=1 ZetShow call zettel#show_zettels_with_tag(<f-args>)
-command ZetList call zettel#list_zettels()
-command ZetNew  call zettel#make_zettel()
-command ZetLink call zettel#link()
+" take the name of the box as argument
+command -nargs=1 ZBox call zettel#make_box(<f-args>)
+command ZNew call zettel#make_zettel()
+command ZList call zettel#list_zettels()
