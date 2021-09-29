@@ -15,10 +15,10 @@ set ruler
 " Display
 set nowrap
 
-set nonumber
+"set number
 set relativenumber
 
-set sw=2 et
+set sw=4 et
 set softtabstop=-1
 set ts=8
 set nosmartindent
@@ -48,10 +48,15 @@ set viminfo+=:10000
 set concealcursor=n
 
 " Mappings
-nmap <Leader>l :nohlsearch<CR>
-nmap <Leader>q :q<CR>
+nnoremap <Leader>l :nohlsearch<CR>
+nnoremap <Leader>q :q<CR>
 
-nmap <F5> :!make<CR>
+" For the mergetool
+nnoremap <Leader>ll :diffget LO<CR>
+nnoremap <Leader>rr :diffget RE<CR>
+nnoremap <Leader>bb :diffget BA<CR>
+
+nnoremap <F5> :!make debug<CR>
 
 runtime ftplugin/man.vim
 
@@ -59,10 +64,10 @@ runtime ftplugin/man.vim
 nnoremap ;; :w<CR>
 
 set laststatus=2
-set statusline=%f 
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " Commands for the zettel plugin
-command -nargs=1 ZetShow call zettel#show_zettels_with_tag(<f-args>)
-command ZetList call zettel#list_zettels()
-command ZetNew  call zettel#make_zettel()
-command ZetLink call zettel#link()
+command ZShow call zettel#show_zettels_with_tag()
+command ZList call zettel#list_boxes()
+command ZNew  call zettel#make_zettel()
+command -nargs=1 ZBox call zettel#create_box(<f-args>)
