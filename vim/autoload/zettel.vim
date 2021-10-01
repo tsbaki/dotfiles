@@ -1,11 +1,37 @@
+function! zettel#make_box(box_name) abort
+  if empty(glob(g:path_to_zettel))
+    call mkdir(g:path_to_zettel)
+  endif
+  call mkdir(g:path_to_zettel . '/' . a:box_name)
+endfunction
+
+function! zettel#list_zettels() abort
+    let l:boxes = globpath(g:path_to_zettel, '*', 1, 1)
+    if empty(l:boxes)
+      echoerr 'No zettels'
+    else
+      new
+      for l:box in l:boxes
+        for l:zet in globpath(l:box, '*', 1, 1)
+          call append('$', fnamemodify(l:zet,":~:."))
+          let $text = "\t" . readfile(l:zet, '', 1)[0]
+          call append('$', $text)
+          call append('$', "\n")
+        endfor
+      endfor
+    endif
+    " Removes the empty line that append leaves
+    :0d
+endfunction
+
 function! zettel#make_zettel() abort
     " Make sure the dir has been created otherwise create it
-    if empty(glob(g:path_to_zettel))
-        call mkdir(g:path_to_zettel, 'p')
-    endif
-    let l:index_card_dir = g:path_to_zettel . strftime('/%d%m%y%H%M%S')
-    call mkdir(l:index_card_dir, 'p')
-    let $zet_path = l:index_card_dir . '/zet.txt'
+    let l:boxes = globpath(g:path_to_zettel, '*', 1, 1)
+    for l:box in l:boxes
+      echom '['.index(l:boxes, l:box).'] -> ' . fnamemodify(l:box, ":t")
+    endfor
+    let l:index = input('Index: ')
+    let $zet_path = l:boxes[l:index] . '/' . strftime('/%d%m%y%H%M%S')
     " Create new window
     new
     edit $zet_path
@@ -40,11 +66,6 @@ function! s:Format_to_date(file_p) abort
                 \" ".strcharpart(l:parent_dir, 6, 2).
                 \":".strcharpart(l:parent_dir, 8, 2).
                 \":".strcharpart(l:parent_dir, 10, 2)
-endfunction
-
-function! zettel#list_zettels() abort
-    let $path = g:path_to_zettel
-    Vexplore $path
 endfunction
 
 function! zettel#link() abort
