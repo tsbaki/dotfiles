@@ -1,18 +1,8 @@
 set encoding=utf-8
-set background=dark
+set background=light
 set clipboard=
 
 let g:path_to_zettel=$HOME."/Documents/Zettel"
-
-let g:netrw_browse_split=3
-let g:netrw_browse_split=1
-let g:netrw_liststyle=0
-let g:netrw_banner=0
-" Set relative number to the ntree
-let g:netrw_bufsettings="noma nomod nonu nobl nowrap ro rnu"
-
-colorscheme solarized
-syntax enable
 
 " Behaviour
 set noswapfile
@@ -21,8 +11,7 @@ set ruler
 " Display
 set nowrap
 
-set relativenumber
-
+set mouse=a
 set sw=4 et
 set softtabstop=-1
 set ts=8
@@ -62,8 +51,6 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>ll :diffget LO<CR>
 nnoremap <Leader>rr :diffget RE<CR>
 nnoremap <Leader>bb :diffget BA<CR>
-
-nnoremap <F5> :!make debug<CR>
 
 runtime ftplugin/man.vim
 
