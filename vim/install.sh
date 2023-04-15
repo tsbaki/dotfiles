@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# make sure to back up 
 if test -f $HOME/.vimrc; then
-    mv $HOME/.vimrc $HOME/.vimrc.bak
+	echo "'.vimrc' found; creating a backup..."
+	mv $HOME/.vimrc $HOME/.vimrc.bak
 fi
+
 cp ./.vimrc $HOME/
