@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
-
-software='sudo fish vim git fzf'
+read -r -d '' software << EOM
+python3
+sudo
+fish  
+vim   
+git   
+rsync
+fzf
+EOM
 
 if [ "$EUID" -ne 0 ]
 	then echo "Please run as root."
