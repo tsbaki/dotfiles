@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 read -r -d '' software << EOM
+curl
+wget
 pandoc
 python3
 sudo
