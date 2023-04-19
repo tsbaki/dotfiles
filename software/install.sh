@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 read -r -d '' software << EOM
+pandoc
 python3
 sudo
 fish  
