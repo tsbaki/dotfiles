@@ -13,6 +13,8 @@ set softtabstop=-1
 set cindent
 set tw=60
 set nojoinspaces
+set sw=4 ts=4
+set expandtab
 
 set hlsearch
 set incsearch
